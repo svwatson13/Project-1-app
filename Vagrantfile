@@ -1,0 +1,17 @@
+required_plugins = %w( vagrant-hostsupdater vagrant-berkshelf )
+
+required_plugins.each do |plugin|
+  exec "vagrant plugin install #{plugin};vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin? plugin || ARGV[0] == 'plugin'
+end
+
+
+Vagrant.configure("2") do |config|
+  config.omnibus.chef_version = '14.12.9'
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.synced_folder ".", "/home/vagrant/app"
+
+  config.vm.provision 'chef_solo' do |chef|
+    chef.add_recipe 'cookbooks/project1'
+    chef.arguments = '--chef-license=accept'
+  end
+end
