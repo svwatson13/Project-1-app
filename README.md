@@ -1,4 +1,4 @@
-# project1# Development environment
+# project1: Development environment
 
 ## Welcome developers :ok_hand: in order to run the dev environment clone this repo and hit vagrant up
 
