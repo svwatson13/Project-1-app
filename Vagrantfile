@@ -8,10 +8,10 @@ end
 Vagrant.configure("2") do |config|
   config.omnibus.chef_version = '14.12.9'
   config.vm.box = "ubuntu/xenial64"
-  config.vm.synced_folder ".", "/home/vagrant/app"
+  config.vm.synced_folder ".", "/home/ubuntu/app"
 
   config.vm.provision 'chef_solo' do |chef|
-    chef.add_recipe 'cookbooks/project1'
+    chef.add_recipe 'project1'
     chef.arguments = '--chef-license=accept'
   end
 end
